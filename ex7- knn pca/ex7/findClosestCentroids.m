@@ -23,10 +23,14 @@ idx = zeros(size(X,1), 1);
 %
 
 for j = 1:m
-   dist = sum(X(j,:) - centroids(1,:) .^ 2);
+   dist = X(j,:) - centroids(1,:);
+   dist = dist .^ 2;
+   dist = sum(dist);
    idx(j) = 1;
  for i = 2:K 
-   dist_new = sum(X(j,:) - centroids(i,:) .^ 2);
+   dist_new = X(j,:) - centroids(i,:);
+   dist_new = dist_new .^ 2;
+   dist_new = sum(dist_new);
    if(dist_new < dist)
        dist = dist_new;
        idx(j) = i;
